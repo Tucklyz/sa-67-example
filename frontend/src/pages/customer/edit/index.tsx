@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState ,useEffect } from "react";
 
 import {
 
@@ -32,7 +32,7 @@ import { PlusOutlined } from "@ant-design/icons";
 
 import { UsersInterface } from "../../../interfaces/IUser";
 
-import { GenderInterface } from "../../../interfaces/Gender";
+import { GenderInterface } from "../../../interfaces/Genders";
 
 import { GetGender, GetUsersById, UpdateUsersById } from "../../../services/https/index";
 
