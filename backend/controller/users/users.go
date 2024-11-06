@@ -11,8 +11,6 @@ import (
 
    "example.com/sa-67-example/config"
 
-   //    "example.com/sa-67-example/models"
-
    "example.com/sa-67-example/entity"
 
 )
@@ -21,7 +19,7 @@ import (
 func GetAll(c *gin.Context) {
 
 
-   var users []models.Users
+   var users []entity.Users
 
 
    db := config.DB()
@@ -47,7 +45,7 @@ func Get(c *gin.Context) {
 
    ID := c.Param("id")
 
-   var user models.Users
+   var user entity.Users
 
 
    db := config.DB()
@@ -79,7 +77,7 @@ func Get(c *gin.Context) {
 func Update(c *gin.Context) {
 
 
-   var user models.Users
+   var user entity.Users
 
 
    UserID := c.Param("id")

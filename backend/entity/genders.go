@@ -1,8 +1,7 @@
-package models
+package entity
 
 
 import "gorm.io/gorm"
-
 
 type Genders struct {
 

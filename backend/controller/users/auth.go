@@ -19,8 +19,6 @@ import (
 
    "example.com/sa-67-example/config"
 
-   //    "example.com/sa-67-example/models"
-
    "example.com/sa-67-example/entity"
 
    "example.com/sa-67-example/services"
@@ -78,7 +76,7 @@ func SignUp(c *gin.Context) {
 
    db := config.DB()
 
-   var userCheck models.Users
+   var userCheck entity.Users
 
 
    // Check if the user with the provided email already exists
@@ -114,7 +112,7 @@ func SignUp(c *gin.Context) {
 
    // Create a new user
 
-   user := models.Users{
+   user := entity.Users{
 
        FirstName: payload.FirstName,
 
@@ -153,7 +151,7 @@ func SignIn(c *gin.Context) {
 
    var payload Authen
 
-   var user models.Users
+   var user entity.Users
 
 
    if err := c.ShouldBindJSON(&payload); err != nil {

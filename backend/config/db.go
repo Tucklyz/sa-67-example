@@ -48,28 +48,28 @@ func SetupDatabase() {
 
    db.AutoMigrate(
 
-       &models.Users{},
+       &entity.Users{},
 
-       &models.Genders{},
+       &entity.Genders{},
 
    )
 
 
-   GenderMale := models.Genders{Gender: "Male"}
+   GenderMale := entity.Genders{Gender: "Male"}
 
-   GenderFemale := models.Genders{Gender: "Female"}
+   GenderFemale := entity.Genders{Gender: "Female"}
 
 
-   db.FirstOrCreate(&GenderMale, &models.Genders{Gender: "Male"})
+   db.FirstOrCreate(&GenderMale, &entity.Genders{Gender: "Male"})
 
-   db.FirstOrCreate(&GenderFemale, &models.Genders{Gender: "Female"})
+   db.FirstOrCreate(&GenderFemale, &entity.Genders{Gender: "Female"})
 
 
    hashedPassword, _ := HashPassword("123456")
 
    BirthDay, _ := time.Parse("2006-01-02", "1988-11-12")
 
-   User := &models.Users{
+   User := &entity.Users{
 
        FirstName: "Software",
 
@@ -87,7 +87,7 @@ func SetupDatabase() {
 
    }
 
-   db.FirstOrCreate(User, &models.Users{
+   db.FirstOrCreate(User, &entity.Users{
 
        Email: "sa@gmail.com",
 
