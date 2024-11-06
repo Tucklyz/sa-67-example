@@ -26,11 +26,15 @@ import {
 
 } from "antd";
 
+import { useState, useEffect } from "react";
+
 import { PlusOutlined } from "@ant-design/icons";
 
 import { UsersInterface } from "../../../interfaces/IUser";
 
-import { CreateUser } from "../../../services/https";
+import { GenderInterface } from "../../../interfaces/Gender";
+
+import { GetGender, CreateUser } from "../../../services/https";
 
 import { useNavigate, Link } from "react-router-dom";
 
@@ -42,11 +46,42 @@ function CustomerCreate() {
 
   const [messageApi, contextHolder] = message.useMessage();
 
+  const [gender, setGender] = useState<GenderInterface[]>([]);
+
+
+  const onGetGender = async () => {
+
+    let res = await GetGender();
+
+    if (res.status == 200) {
+
+      setGender(res.data);
+
+    } else {
+
+      messageApi.open({
+
+        type: "error",
+
+        content: "ไม่พบข้อมูลเพศ",
+
+      });
+
+      setTimeout(() => {
+
+        navigate("/customer");
+
+      }, 2000);
+
+    }
+
+  };
+
 
   const onFinish = async (values: UsersInterface) => {
 
 
-    const res = await CreateUser(values);
+    let res = await CreateUser(values);
 
    
 
@@ -79,6 +114,15 @@ function CustomerCreate() {
     }
 
   };
+
+
+  useEffect(() => {
+
+    onGetGender();
+
+    return () => {};
+
+  }, []);
 
 
   return (
@@ -320,23 +364,23 @@ function CustomerCreate() {
 
               >
 
-                <Select
+                 <Select defaultValue="" style={{ width: "100%" }}>
 
-                  defaultValue=""
+                  {gender?.map((item) => (
 
-                  style={{ width: "100%" }}
+                    <Select.Option
 
-                  options={[
+                      value={item?.ID}
 
-                    { value: "", label: "กรุณาเลือกเพศ", disabled: true },
+                    >
 
-                    { value: 1, label: "Male" },
+                      {item?.gender}
 
-                    { value: 2, label: "Female" },
+                    </Select.Option>
 
-                  ]}
+                  ))}
 
-                />
+                </Select>
 
               </Form.Item>
 

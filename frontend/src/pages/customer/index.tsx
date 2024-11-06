@@ -131,7 +131,7 @@ function Customers() {
       render: (record) => <>{record?.gender?.gender}</>,
 
     },
-    
+
     {
 
       title: "",
