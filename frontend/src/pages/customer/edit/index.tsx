@@ -85,7 +85,7 @@ function CustomerEdit() {
 
   const getUserById = async (id: string) => {
 
-    let res = await GetUsersById(id);
+    const res = await GetUsersById(id);
 
     if (res.status == 200) {
 
